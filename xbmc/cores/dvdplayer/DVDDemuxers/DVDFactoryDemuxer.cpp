@@ -99,9 +99,15 @@ CDVDDemux* CDVDFactoryDemuxer::CreateDemuxer(CDVDInputStream* pInputStream)
   }
 #endif
 
+  bool streaminfo = true;
   if (pInputStream->IsStreamType(DVDSTREAM_TYPE_PVRMANAGER))
   {
     CDVDInputStreamPVRManager* pInputStreamPVR = (CDVDInputStreamPVRManager*)pInputStream;
+
+    /* Don't parse the streaminfo for live streams */
+    bool liveStream = (pInputStream->GetFileName().substr(0, 14) == "pvr://channels");
+    streaminfo = !pInputStreamPVR->IsStreamType(DVDSTREAM_TYPE_PVRMANAGER) || !liveStream;
+
     CDVDInputStream* pOtherStream = pInputStreamPVR->GetOtherStream();
     if(pOtherStream)
     {
@@ -109,16 +115,15 @@ CDVDDemux* CDVDFactoryDemuxer::CreateDemuxer(CDVDInputStream* pInputStream)
       if (pOtherStream->IsStreamType(DVDSTREAM_TYPE_FFMPEG))
       {
         auto_ptr<CDVDDemuxFFmpeg> demuxer(new CDVDDemuxFFmpeg());
-        if(demuxer->Open(pOtherStream))
+        if (demuxer->Open(pOtherStream, streaminfo))
           return demuxer.release();
         else
           return NULL;
       }
     }
 
-    std::string filename = pInputStream->GetFileName();
     /* Use PVR demuxer only for live streams */
-    if (filename.substr(0, 14) == "pvr://channels")
+    if (liveStream)
     {
       boost::shared_ptr<CPVRClient> client;
       if (g_PVRClients->GetPlayingClient(client) &&
@@ -134,7 +139,7 @@ CDVDDemux* CDVDFactoryDemuxer::CreateDemuxer(CDVDInputStream* pInputStream)
   }
 
   auto_ptr<CDVDDemuxFFmpeg> demuxer(new CDVDDemuxFFmpeg());
-  if(demuxer->Open(pInputStream))
+  if (demuxer->Open(pInputStream, streaminfo))
     return demuxer.release();
   else
     return NULL;

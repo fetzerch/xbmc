@@ -49,6 +49,8 @@
 #include "utils/TimeUtils.h"
 #include "URL.h"
 
+#define FF_MAX_EXTRADATA_SIZE ((1 << 28) - FF_INPUT_BUFFER_PADDING_SIZE)
+
 void CDemuxStreamAudioFFmpeg::GetStreamInfo(std::string& strInfo)
 {
   if(!m_stream) return;
@@ -217,6 +219,7 @@ CDVDDemuxFFmpeg::CDVDDemuxFFmpeg() : CDVDDemux()
   m_program = UINT_MAX;
   m_pkt.result = -1;
   memset(&m_pkt.pkt, 0, sizeof(AVPacket));
+  m_streaminfo = true;
 }
 
 CDVDDemuxFFmpeg::~CDVDDemuxFFmpeg()
@@ -237,10 +240,11 @@ bool CDVDDemuxFFmpeg::Aborted()
   return false;
 }
 
-bool CDVDDemuxFFmpeg::Open(CDVDInputStream* pInput)
+bool CDVDDemuxFFmpeg::Open(CDVDInputStream* pInput, bool streaminfo)
 {
   AVInputFormat* iformat = NULL;
   std::string strFile;
+  m_streaminfo = streaminfo;
   m_iCurrentPts = DVD_NOPTS_VALUE;
   m_speed = DVD_PLAYSPEED_NORMAL;
   m_program = UINT_MAX;
@@ -258,8 +262,6 @@ bool CDVDDemuxFFmpeg::Open(CDVDInputStream* pInput)
 
   m_pInput = pInput;
   strFile = m_pInput->GetFileName();
-
-  bool streaminfo = true; /* set to true if we want to look for streams before playback*/
 
   if( m_pInput->GetContent().length() > 0 )
   {
@@ -450,7 +452,7 @@ bool CDVDDemuxFFmpeg::Open(CDVDInputStream* pInput)
   m_bMatroska = strncmp(m_pFormatContext->iformat->name, "matroska", 8) == 0;	// for "matroska.webm"
   m_bAVI = strcmp(m_pFormatContext->iformat->name, "avi") == 0;
 
-  if (streaminfo)
+  if (m_streaminfo)
   {
     /* too speed up dvd switches, only analyse very short */
     if(m_pInput->IsStreamType(DVDSTREAM_TYPE_DVD))
@@ -476,6 +478,9 @@ bool CDVDDemuxFFmpeg::Open(CDVDInputStream* pInput)
     }
     CLog::Log(LOGDEBUG, "%s - av_find_stream_info finished", __FUNCTION__);
   }
+  else
+    m_program = 0;
+
   // reset any timeout
   m_timeout.SetInfinite();
 
@@ -530,7 +535,7 @@ void CDVDDemuxFFmpeg::Reset()
 {
   CDVDInputStream* pInputStream = m_pInput;
   Dispose();
-  Open(pInputStream);
+  Open(pInputStream, m_streaminfo);
 }
 
 void CDVDDemuxFFmpeg::Flush()
@@ -715,6 +720,45 @@ DemuxPacket* CDVDDemuxFFmpeg::Read()
     else
     {
       AVStream *stream = m_pFormatContext->streams[m_pkt.pkt.stream_index];
+
+      AVStream *st = m_pFormatContext->streams[m_pkt.pkt.stream_index];
+      if (st->parser && st->parser->parser->split && !st->codec->extradata)
+      {
+        int i = st->parser->parser->split(st->codec, m_pkt.pkt.data, m_pkt.pkt.size);
+        if (i > 0 && i < FF_MAX_EXTRADATA_SIZE)
+        {
+          st->codec->extradata_size = i;
+          st->codec->extradata = (uint8_t*)m_dllAvUtil.av_malloc(st->codec->extradata_size + FF_INPUT_BUFFER_PADDING_SIZE);
+          if (st->codec->extradata)
+          {
+            memcpy(st->codec->extradata, m_pkt.pkt.data, st->codec->extradata_size);
+            memset(st->codec->extradata + i, 0, FF_INPUT_BUFFER_PADDING_SIZE);
+
+            if (st->codec->codec_type == AVMEDIA_TYPE_VIDEO)
+            {
+              const AVCodec* codec;
+              AVDictionary *thread_opt = NULL;
+              codec = st->codec->codec ? st->codec->codec : m_dllAvCodec.avcodec_find_decoder(st->codec->codec_id);
+              m_dllAvUtil.av_dict_set(&thread_opt, "threads", "1", 0);
+              m_dllAvCodec.avcodec_open2(st->codec, codec, &thread_opt);
+              //m_dllAvUtil.av_dict_free(&thread_opt);
+
+              AVFrame picture;
+              int got_picture;
+              memset(&picture, 0, sizeof(AVFrame));
+              picture.pts = picture.pkt_dts = picture.pkt_pts = picture.best_effort_timestamp = AV_NOPTS_VALUE;
+              picture.pkt_pos = -1;
+              picture.key_frame= 1;
+              //picture.sample_aspect_ratio = (AVRational){0, 1};
+              picture.format = -1;
+              m_dllAvCodec.avcodec_decode_video2(st->codec, &picture,
+                                               &got_picture, &m_pkt.pkt);
+              m_dllAvCodec.avcodec_close(st->codec);
+              st->parser->flags = 0;
+            }
+          }
+        }
+      }
 
       if (m_program != UINT_MAX)
       {
