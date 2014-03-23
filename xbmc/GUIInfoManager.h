@@ -753,6 +753,7 @@ public:
    \sa GetItemInt, GetMultiInfoInt
    */
   bool GetInt(int &value, int info, int contextWindow = 0, const CGUIListItem *item = NULL) const;
+  bool GetFloat(float &value, int info, int contextWindow = 0, const CGUIListItem *item = NULL) const;
   CStdString GetLabel(int info, int contextWindow = 0, std::string *fallback = NULL);
 
   CStdString GetImage(int info, int contextWindow, std::string *fallback = NULL);

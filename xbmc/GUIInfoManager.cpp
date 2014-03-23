@@ -2169,6 +2169,40 @@ bool CGUIInfoManager::GetInt(int &value, int info, int contextWindow, const CGUI
   return false;
 }
 
+bool CGUIInfoManager::GetFloat(float &value, int info, int contextWindow /* = 0 */, const CGUIListItem *item /* = NULL */) const
+{
+  if (g_application.m_pPlayer->IsPlaying() &&
+      (info < MULTI_INFO_START || info > MULTI_INFO_END) &&
+      (info < LISTITEM_START || info > LISTITEM_END))
+  {
+    bool floatHandled = true;
+    switch (info)
+    {
+    case PLAYER_PROGRESS:
+      value = g_application.GetPercentage();
+      break;
+    case PLAYER_PROGRESS_CACHE:
+      value = g_application.GetCachePercentage();
+      break;
+    case PLAYER_SEEKBAR:
+      value = g_application.GetSeekHandler()->GetPercent();
+      break;
+    case PLAYER_CACHELEVEL:
+      value = g_application.m_pPlayer->GetCacheLevel();
+      break;
+    default:
+      floatHandled = false;
+    }
+    if (floatHandled)
+      return true;
+  }
+
+  int iValue;
+  bool result = GetInt(iValue, info, contextWindow, item);
+  value = iValue;
+  return result;
+}
+
 // functor for comparison InfoPtr's
 struct InfoBoolFinder
 {

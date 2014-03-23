@@ -73,9 +73,9 @@ void CGUISliderControl::Process(unsigned int currentTime, CDirtyRegionList &dirt
     infoCode = m_action->infoCode;
   if (infoCode)
   {
-    int val;
-    if (g_infoManager.GetInt(val, infoCode))
-      SetIntValue(val);
+    float val;
+    if (g_infoManager.GetFloat(val, infoCode))
+      SetFloatValue(val);
   }
 
   float fScaleY = m_height == 0 ? 1.0f : m_height / m_guiBackground.GetTextureHeight();
