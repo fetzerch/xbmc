@@ -1311,6 +1311,11 @@ int CPVRManager::GetStartTime(void) const
   return IsStarted() && m_guiInfo ? m_guiInfo->GetStartTime() : 0;
 }
 
+bool CPVRManager::GetPlayingEpgTag(EPG::CEpgInfoTag &tag) const
+{
+  return IsStarted() && m_guiInfo ? m_guiInfo->GetPlayingTag(tag) : false;
+}
+
 bool CPVRManager::TranslateBoolInfo(DWORD dwInfo) const
 {
    return IsStarted() && m_guiInfo ? m_guiInfo->TranslateBoolInfo(dwInfo) : false;

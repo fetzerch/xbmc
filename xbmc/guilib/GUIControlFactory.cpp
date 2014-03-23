@@ -35,6 +35,7 @@
 #include "GUITextBox.h"
 #include "GUIVideoControl.h"
 #include "GUIProgressControl.h"
+#include "GUIMarkerControl.h"
 #include "GUISliderControl.h"
 #include "GUISelectButtonControl.h"
 #include "GUIMoverControl.h"
@@ -89,6 +90,7 @@ static const ControlMapping controls[] =
     {"group",             CGUIControl::GUICONTROL_GROUP},
     {"group",             CGUIControl::GUICONTROL_LISTGROUP},
     {"progress",          CGUIControl::GUICONTROL_PROGRESS},
+    {"marker",            CGUIControl::GUICONTROL_MARKER},
     {"radiobutton",       CGUIControl::GUICONTROL_RADIO},
     {"rss",               CGUIControl::GUICONTROL_RSS},
     {"selectbutton",      CGUIControl::GUICONTROL_SELECTBUTTON},
@@ -716,6 +718,7 @@ CGUIControl* CGUIControlFactory::Create(int parentID, const CRect &rect, TiXmlEl
   CTextureInfo textureRadioOffFocus, textureRadioOffNoFocus;
   CTextureInfo imageNoFocus, imageFocus;
   CTextureInfo textureProgressIndicator;
+  CTextureInfo textureChapterMarker, textureEdlMarker, textureTimeshiftMarker;
   CGUIInfoLabel texturePath;
   CRect borderSize;
 
@@ -1002,6 +1005,10 @@ CGUIControl* CGUIControlFactory::Create(int parentID, const CRect &rect, TiXmlEl
   XMLUtils::GetInt(pControlNode, "timeblocks", timeBlocks);
   XMLUtils::GetInt(pControlNode, "rulerunit", rulerUnit);
   GetTexture(pControlNode, "progresstexture", textureProgressIndicator);
+
+  GetTexture(pControlNode, "chaptermarkertexture", textureChapterMarker);
+  GetTexture(pControlNode, "edlmarkertexture", textureEdlMarker);
+  GetTexture(pControlNode, "timeshiftmarkertexture", textureTimeshiftMarker);
 
   GetInfoTexture(pControlNode, "imagepath", texture, texturePath, parentID);
 
@@ -1294,6 +1301,12 @@ CGUIControl* CGUIControlFactory::Create(int parentID, const CRect &rect, TiXmlEl
       textureOverlay, bReveal);
 
     ((CGUIProgressControl *)control)->SetInfo(singleInfo);
+  }
+  else if (type == CGUIControl::GUICONTROL_MARKER)
+  {
+    control = new CGUIMarkerControl(
+      parentID, id, posX, posY, width, height,
+      textureChapterMarker, textureEdlMarker, textureTimeshiftMarker);
   }
   else if (type == CGUIControl::GUICONTROL_IMAGE)
   {

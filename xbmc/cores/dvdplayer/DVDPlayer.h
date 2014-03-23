@@ -252,6 +252,8 @@ public:
   virtual void GetChapterName(std::string& strChapterName);
   virtual int  SeekChapter(int iChapter);
 
+  virtual std::vector<SMarkerInfo> GetMarkers();
+
   virtual void SeekTime(int64_t iTime);
   virtual int64_t GetTime();
   virtual int64_t GetTotalTime();

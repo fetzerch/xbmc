@@ -317,6 +317,16 @@
 					<aligny>center</aligny>
 					<label>$INFO[Player.StartTime(hh:mm)]</label>
 				</control>
+				<control type="marker" id="1">
+					<description>VideoMarkers</description>
+					<left>100</left>
+					<top>13</top>
+					<width>720</width>
+					<height>20</height>
+					<chaptermarkertexture>marker_chapter.png</chaptermarkertexture>
+					<edlmarkertexture>marker_edl.png</edlmarkertexture>
+					<timeshiftmarkertexture>marker_timeshift.png</timeshiftmarkertexture>
+				</control>
 				<control type="progress" id="1">
 					<description>ProgressbarCache</description>
 					<left>100</left>

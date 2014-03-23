@@ -37,6 +37,7 @@ class CFileItemList;
 namespace EPG
 {
   class CEpgContainer;
+  class CEpgInfoTag;
 }
 
 namespace PVR
@@ -450,6 +451,8 @@ namespace PVR
      * @return The position in milliseconds or NULL if no channel is playing.
      */
     int GetStartTime(void) const;
+
+    bool GetPlayingEpgTag(EPG::CEpgInfoTag &tag) const;
 
     /*!
      * @brief Start playback on a channel.

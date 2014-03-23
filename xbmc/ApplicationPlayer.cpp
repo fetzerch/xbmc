@@ -138,6 +138,15 @@ void CApplicationPlayer::GetChapterName(std::string& strChapterName)
     player->GetChapterName(strChapterName);
 }
 
+std::vector<SMarkerInfo> CApplicationPlayer::GetMarkers() const
+{
+  boost::shared_ptr<IPlayer> player = GetInternal();
+  if (player)
+    return player->GetMarkers();
+
+  return std::vector<SMarkerInfo>();
+}
+
 bool CApplicationPlayer::HasAudio() const
 {
   boost::shared_ptr<IPlayer> player = GetInternal();

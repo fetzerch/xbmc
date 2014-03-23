@@ -61,6 +61,8 @@ public:
 
   static std::string MillisecondsToTimeString(const int iMilliseconds);
 
+  std::vector<Cut> GetEdl() const;
+
 protected:
 private:
   int m_iTotalCutTime; // ms

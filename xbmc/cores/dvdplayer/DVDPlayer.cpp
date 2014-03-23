@@ -4019,6 +4019,34 @@ void CDVDPlayer::GetChapterName(std::string& strChapterName)
   strChapterName = m_State.chapter_name;
 }
 
+std::vector<SMarkerInfo> CDVDPlayer::GetMarkers()
+{
+  std::vector<SMarkerInfo> result;
+
+  std::vector<CEdl::Cut> edl = m_Edl.GetEdl();
+  for (std::vector<CEdl::Cut>::iterator edlIt = edl.begin(); edlIt != edl.end(); ++edlIt)
+  {
+    switch ((*edlIt).action)
+    {
+    case CEdl::COMM_BREAK:
+      result.push_back(SMarkerInfo(IP_MT_EDL_COMM_BREAK, (*edlIt).start, (*edlIt).end));
+      break;
+    default:
+      break;
+    }
+  }
+
+  if(m_pDemuxer)
+  {
+    for (int i = 0; i < GetChapterCount(); i++)
+    {
+      u_int64_t startTime = m_pDemuxer->GetChapterStartTime(i);
+      result.push_back(SMarkerInfo(IP_MT_CHAPTER, startTime));
+    }
+  }
+  return result;
+}
+
 int CDVDPlayer::SeekChapter(int iChapter)
 {
   if (GetChapter() > 0)

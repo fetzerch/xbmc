@@ -922,6 +922,11 @@ std::string CEdl::MillisecondsToTimeString(const int iMilliseconds)
   return strTimeString;
 }
 
+std::vector<CEdl::Cut> CEdl::GetEdl() const
+{
+  return m_vecCuts;
+}
+
 bool CEdl::ReadMythCommBreakList(const std::string& strMovie, const float fFramesPerSecond)
 {
   /*

@@ -42,6 +42,7 @@ SRCS += GUIMultiImage.cpp
 SRCS += GUIMultiSelectText.cpp
 SRCS += GUIPanelContainer.cpp
 SRCS += GUIProgressControl.cpp
+SRCS += GUIMarkerControl.cpp
 SRCS += GUIRadioButtonControl.cpp
 SRCS += GUIResizeControl.cpp
 SRCS += GUIRenderingControl.cpp

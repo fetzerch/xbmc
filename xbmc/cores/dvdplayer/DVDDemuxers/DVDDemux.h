@@ -277,6 +277,11 @@ public:
   virtual void GetChapterName(std::string& strChapterName) {}
 
   /*
+   * Get the start time of the specified chapter
+   */
+  virtual int64_t GetChapterStartTime(int iChapter) { (void)iChapter; return -1; }
+
+  /*
    * Set the playspeed, if demuxer can handle different
    * speeds of playback
    */

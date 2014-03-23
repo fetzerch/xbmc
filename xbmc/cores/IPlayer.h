@@ -25,6 +25,7 @@
 #include "IPlayerCallback.h"
 #include "guilib/Geometry.h"
 #include <string>
+#include "Edl.h"
 
 struct TextCacheStruct_t;
 class TiXmlElement;
@@ -122,6 +123,26 @@ struct SPlayerVideoStreamInfo
   }
 };
 
+enum IMarkerType
+{
+  IP_MT_CHAPTER,
+  IP_MT_EDL_COMM_BREAK
+};
+
+struct SMarkerInfo
+{
+  IMarkerType type;
+  u_int64_t start;
+  u_int64_t end;
+
+  SMarkerInfo(IMarkerType type, u_int64_t start, u_int64_t end=-1)
+  {
+    this->type = type;
+    this->start = start;
+    this->end = end;
+  }
+};
+
 class IPlayer
 {
 public:
@@ -182,6 +203,8 @@ public:
   virtual void GetChapterName(std::string& strChapterName)     { return; }
   virtual int  SeekChapter(int iChapter)                       { return -1; }
 //  virtual bool GetChapterInfo(int chapter, SChapterInfo &info) { return false; }
+
+  virtual std::vector<SMarkerInfo> GetMarkers() { return std::vector<SMarkerInfo>(); }
 
   virtual float GetActualFPS() { return 0.0f; };
   virtual void SeekTime(int64_t iTime = 0){};

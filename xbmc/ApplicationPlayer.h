@@ -24,6 +24,7 @@
 #include "threads/SingleLock.h"
 #include "threads/SystemClock.h"
 #include "cores/playercorefactory/PlayerCoreFactory.h"
+#include "cores/IPlayer.h"
 
 typedef enum
 {
@@ -95,6 +96,7 @@ public:
   int   GetChapterCount();
   int   GetChapter();  
   void  GetChapterName(std::string& strChapterName);
+  std::vector<SMarkerInfo> GetMarkers() const;
   void  GetDeinterlaceMethods(std::vector<int> &deinterlaceMethods);
   void  GetDeinterlaceModes(std::vector<int> &deinterlaceModes);
   void  GetGeneralInfo(std::string& strVideoInfo);

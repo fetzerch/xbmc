@@ -1392,6 +1392,21 @@ void CDVDDemuxFFmpeg::GetChapterName(std::string& strChapterName)
   }
 }
 
+int64_t CDVDDemuxFFmpeg::GetChapterStartTime(int iChapter)
+{
+  //CDVDInputStream::IChapter* ich = dynamic_cast<CDVDInputStream::IChapter*>(m_pInput);
+  //if(ich)
+  //  return ich->GetChapterStartTime(iChapter);
+
+  if (m_pFormatContext == NULL)
+    return -1;
+
+  if (m_pFormatContext->nb_chapters <= (unsigned)iChapter)
+    return -1;
+
+  return m_pFormatContext->chapters[iChapter]->start / AV_TIME_BASE;
+}
+
 bool CDVDDemuxFFmpeg::SeekChapter(int chapter, double* startpts)
 {
   if(chapter < 1)
