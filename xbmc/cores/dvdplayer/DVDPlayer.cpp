@@ -1235,7 +1235,8 @@ void CDVDPlayer::Process()
     CLog::Log(LOGDEBUG, "%s - Start position set to last stopped position: %d", __FUNCTION__, starttime);
   }
   else if(m_Edl.InCut(0, &cut)
-      && (cut.action == CEdl::CUT || cut.action == CEdl::COMM_BREAK))
+      && (cut.action == CEdl::CUT || cut.action == CEdl::COMM_BREAK)
+      && CSettings::Get().GetBool("videoplayer.edlautoskip"))
   {
     starttime = cut.end;
     CLog::Log(LOGDEBUG, "%s - Start position set to end of first cut or commercial break: %d", __FUNCTION__, starttime);
@@ -2097,6 +2098,10 @@ void CDVDPlayer::CheckAutoSceneSkip()
 
   CEdl::Cut cut;
   if(!m_Edl.InCut(clock, &cut))
+    return;
+
+  if((cut.action == CEdl::CUT || cut.action == CEdl::COMM_BREAK)
+  && CSettings::Get().GetBool("videoplayer.edlautoskip") == false)
     return;
 
   if(cut.action == CEdl::CUT

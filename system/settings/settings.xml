@@ -522,6 +522,13 @@
           <control type="toggle" />
         </setting>
       </group>
+      <group id="5">
+        <setting id="videoplayer.edlautoskip" type="boolean" label="36550" help="36551">
+          <level>2</level>
+          <default>true</default>
+          <control type="toggle" />
+        </setting>
+      </group>
     </category>
     <category id="videoacceleration" label="14101" help="36430">
       <group id="1">

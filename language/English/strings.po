@@ -15815,7 +15815,20 @@ msgctxt "#36549"
 msgid "Use iOS8 compatible AirPlay support. If you have trouble with older iOS devices detecting Kodi as a valid target try switching this off. This option takes effect on the next restart of Kodi only!"
 msgstr ""
 
-#empty strings from id 36550 to 36599
+#. label of a setting, enabling automatic skipping of commercials
+#: xbmc/cores/dvdplayer/DVDPlayer.cpp
+msgctxt "#36550"
+msgid "Automatically skip commercials (from EDL)"
+msgstr ""
+
+#. Description of setting "Videos -> Playback -> Automatically skip commercials with label #36550
+#: system/settings/settings.xml
+msgctxt "#36551"
+msgid "Automatically skip commercial breaks and cuts if Edit Decision List (EDL) is available."
+msgstr ""
+
+#empty strings from id 36552 to 36599
+
 #reserved strings 365XX
 
 #. Description of settings category "Music -> Library" with label #14022
