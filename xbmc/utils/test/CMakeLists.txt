@@ -48,4 +48,6 @@ set(SOURCES TestAlarmClock.cpp
             TestXBMCTinyXML.cpp
             TestXMLUtils.cpp)
 
+set(HEADERS TestGlobalsHandlingPattern1.h)
+
 core_add_test_library(utils_test)

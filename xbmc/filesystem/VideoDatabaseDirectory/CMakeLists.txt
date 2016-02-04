@@ -16,4 +16,22 @@ set(SOURCES DirectoryNode.cpp
             DirectoryNodeTvShowsOverview.cpp
             QueryParams.cpp)
 
+set(HEADERS DirectoryNode.h
+            DirectoryNodeEpisodes.h
+            DirectoryNodeGrouped.h
+            DirectoryNodeInProgressTvShows.h
+            DirectoryNodeMoviesOverview.h
+            DirectoryNodeMusicVideosOverview.h
+            DirectoryNodeOverview.h
+            DirectoryNodeRecentlyAddedEpisodes.h
+            DirectoryNodeRecentlyAddedMovies.h
+            DirectoryNodeRecentlyAddedMusicVideos.h
+            DirectoryNodeRoot.h
+            DirectoryNodeSeasons.h
+            DirectoryNodeTitleMovies.h
+            DirectoryNodeTitleMusicVideos.h
+            DirectoryNodeTitleTvShows.h
+            DirectoryNodeTvShowsOverview.h
+            QueryParams.h)
+
 core_add_library(videodatabasedirectory)

@@ -8,5 +8,15 @@ set(SOURCES HTTPFileHandler.cpp
             HTTPWebinterfaceHandler.cpp
             IHTTPRequestHandler.cpp)
 
+set(HEADERS HTTPFileHandler.h
+            HTTPImageHandler.h
+            HTTPImageTransformationHandler.h
+            HTTPJsonRpcHandler.h
+            HTTPPythonHandler.h
+            HTTPVfsHandler.h
+            HTTPWebinterfaceAddonsHandler.h
+            HTTPWebinterfaceHandler.h
+            IHTTPRequestHandler.h)
+
 core_add_library(network_httprequesthandlers)
 add_dependencies(network_httprequesthandlers libcpluff)

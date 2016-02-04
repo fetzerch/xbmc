@@ -9,6 +9,18 @@ set(SOURCES GUIDialogPictureInfo.cpp
             PictureThumbLoader.cpp
             SlideShowPicture.cpp)
 
+set(HEADERS DllLibExif.h
+            GUIDialogPictureInfo.h
+            GUIViewStatePictures.h
+            GUIWindowPictures.h
+            GUIWindowSlideShow.h
+            Picture.h
+            PictureInfoLoader.h
+            PictureInfoTag.h
+            PictureScalingAlgorithm.h
+            PictureThumbLoader.h
+            SlideShowPicture.h)
+
 core_add_library(pictures)
 
 if(ENABLE_INTERNAL_FFMPEG)

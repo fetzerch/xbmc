@@ -5,6 +5,13 @@ set(SOURCES UPnP.cpp
             UPnPServer.cpp
             UPnPSettings.cpp)
 
+set(HEADERS UPnP.h
+            UPnPInternal.h
+            UPnPPlayer.h
+            UPnPRenderer.h
+            UPnPServer.h
+            UPnPSettings.h)
+
 include_directories(${CORE_SOURCE_DIR}/lib/libUPnP
                     ${CORE_SOURCE_DIR}/lib/libUPnP/Platinum/Source/Core
                     ${CORE_SOURCE_DIR}/lib/libUPnP/Platinum/Source/Platinum

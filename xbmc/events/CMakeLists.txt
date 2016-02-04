@@ -4,5 +4,14 @@ set(SOURCES AddonEvent.cpp
             EventLog.cpp
             MediaLibraryEvent.cpp)
 
+set(HEADERS AddonEvent.h
+            AddonManagementEvent.h
+            BaseEvent.h
+            EventLog.h
+            IEvent.h
+            MediaLibraryEvent.h
+            NotificationEvent.h
+            UniqueEvent.h)
+
 core_add_library(events)
 add_dependencies(events libcpluff)

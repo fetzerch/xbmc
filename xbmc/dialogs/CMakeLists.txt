@@ -27,5 +27,34 @@ set(SOURCES GUIDialogBoxBase.cpp
             GUIDialogVolumeBar.cpp
             GUIDialogYesNo.cpp)
 
+set(HEADERS GUIDialogBoxBase.h
+            GUIDialogBusy.h
+            GUIDialogButtonMenu.h
+            GUIDialogCache.h
+            GUIDialogContextMenu.h
+            GUIDialogExtendedProgressBar.h
+            GUIDialogFavourites.h
+            GUIDialogFileBrowser.h
+            GUIDialogGamepad.h
+            GUIDialogKaiToast.h
+            GUIDialogKeyboardGeneric.h
+            GUIDialogMediaFilter.h
+            GUIDialogMediaSource.h
+            GUIDialogNumeric.h
+            GUIDialogOK.h
+            GUIDialogPlayEject.h
+            GUIDialogPlayerControls.h
+            GUIDialogProgress.h
+            GUIDialogSeekBar.h
+            GUIDialogSelect.h
+            GUIDialogSimpleMenu.h
+            GUIDialogSlider.h
+            GUIDialogSmartPlaylistEditor.h
+            GUIDialogSmartPlaylistRule.h
+            GUIDialogSubMenu.h
+            GUIDialogTextViewer.h
+            GUIDialogVolumeBar.h
+            GUIDialogYesNo.h)
+
 core_add_library(dialogs)
 add_dependencies(dialogs libcpluff)

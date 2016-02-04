@@ -8,6 +8,17 @@ set(SOURCES MusicInfoTag.cpp
             TagLibVFSStream.cpp
             TagLoaderTagLib.cpp)
 
+set(HEADERS ImusicInfoTagLoader.h
+            MusicInfoTag.h
+            MusicInfoTagLoaderCDDA.h
+            MusicInfoTagLoaderDatabase.h
+            MusicInfoTagLoaderFactory.h
+            MusicInfoTagLoaderFFmpeg.h
+            MusicInfoTagLoaderShn.h
+            ReplayGain.h
+            TagLibVFSStream.h
+            TagLoaderTagLib.h)
+
 core_add_library(music_tags)
 
 add_dependencies(music_tags libcpluff)

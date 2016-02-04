@@ -11,6 +11,19 @@ set(SOURCES GUIMediaWindow.cpp
             GUIWindowSystemInfo.cpp
             GUIWindowWeather.cpp)
 
+set(HEADERS GUIMediaWindow.h
+            GUIWindowDebugInfo.h
+            GUIWindowFileManager.h
+            GUIWindowHome.h
+            GUIWindowLoginScreen.h
+            GUIWindowPointer.h
+            GUIWindowScreensaver.h
+            GUIWindowScreensaverDim.h
+            GUIWindowSplash.h
+            GUIWindowStartup.h
+            GUIWindowSystemInfo.h
+            GUIWindowWeather.h)
+
 core_add_library(windows)
 add_dependencies(windows libcpluff)
 

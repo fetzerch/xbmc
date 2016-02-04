@@ -1,5 +1,10 @@
-set(SOURCES WinSystemEGL.cpp
-            EGLWrapper.cpp)
+set(SOURCES EGLWrapper.cpp
+            WinSystemEGL.cpp)
+
+set(HEADERS EGLNativeType.h
+            EGLQuirks.h
+            EGLWrapper.h
+            WinSystemEGL.h)
 
 if(WAYLAND_FOUND)
   list(APPEND SOURCES EGLNativeTypeWayland.cpp)
@@ -7,7 +12,7 @@ endif()
 
 if(MMAL_FOUND)
   list(APPEND SOURCES EGLNativeTypeRaspberryPI.cpp)
+  list(APPEND HEADERS EGLNativeTypeRaspberryPI.h)
 endif()
-
 
 core_add_library(windowing_egl)

@@ -34,6 +34,50 @@ set(SOURCES Application.cpp
             XBApplicationEx.cpp
             XBDateTime.cpp)
 
+set(HEADERS AppParamParser.h
+            Application.h
+            ApplicationPlayer.h
+            AutoSwitch.h
+            Autorun.h
+            BackgroundInfoLoader.h
+            CompileInfo.h
+            ContextMenuItem.h
+            ContextMenuManager.h
+            CueDocument.h
+            DatabaseManager.h
+            DbUrl.h
+            DllPaths.h
+            DllPaths_win32.h
+            DynamicDll.h
+            FileItem.h
+            FileItemListModification.h
+            GUIInfoManager.h
+            GUILargeTextureManager.h
+            GUIPassword.h
+            GUIUserMessages.h
+            IFileItemListModifier.h
+            IProgressCallback.h
+            InfoScanner.h
+            LangInfo.h
+            MediaSource.h
+            NfoFile.h
+            PartyModeManager.h
+            PasswordManager.h
+            PlayListPlayer.h
+            SectionLoader.h
+            SortFileItem.h
+            TextureCache.h
+            TextureCacheJob.h
+            TextureDatabase.h
+            ThumbLoader.h
+            ThumbnailCache.h
+            URL.h
+            Util.h
+            XBApplicationEx.h
+            XBDateTime.h
+            system.h
+            system_gl.h)
+
 core_add_library(xbmc)
 add_dependencies(xbmc libcpluff)
 

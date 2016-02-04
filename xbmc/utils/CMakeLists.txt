@@ -60,6 +60,7 @@ set(SOURCES ActorProtocol.cpp
             StreamUtils.cpp
             StringUtils.cpp
             StringValidation.cpp
+            SysfsUtils.cpp
             SystemInfo.cpp
             Temperature.cpp
             TextSearch.cpp
@@ -74,6 +75,93 @@ set(SOURCES ActorProtocol.cpp
             XMLUtils.cpp
             XSLTUtils.cpp)
 
+set(HEADERS ActorProtocol.h
+            AlarmClock.h
+            AliasShortcutUtils.h
+            Archive.h
+            AsyncFileCopy.h
+            auto_buffer.h
+            Base64.h
+            BitstreamConverter.h
+            BitstreamStats.h
+            BooleanLogic.h
+            CharsetConverter.h
+            CharsetDetection.h
+            CPUInfo.h
+            Crc32.h
+            DatabaseUtils.h
+            EndianSwap.h
+            Environment.h
+            Fanart.h
+            FileOperationJob.h
+            FileUtils.h
+            fstrcmp.h
+            GlobalsHandling.h
+            GroupUtils.h
+            HTMLUtil.h
+            HttpHeader.h
+            HttpParser.h
+            HttpRangeUtils.h
+            HttpResponse.h
+            IArchivable.h
+            InfoLoader.h
+            IRssObserver.h
+            ISerializable.h
+            ISortable.h
+            IXmlDeserializable.h
+            Job.h
+            JobManager.h
+            JSONVariantParser.h
+            JSONVariantWriter.h
+            LabelFormatter.h
+            LangCodeExpander.h
+            LegacyPathTranslation.h
+            Locale.h
+            log.h
+            MathUtils.h
+            md5.h
+            Mime.h
+            Observer.h
+            params_check_macros.h
+            PerformanceSample.h
+            PerformanceStats.h
+            POUtils.h
+            ProgressJob.h
+            RecentlyAddedJob.h
+            RegExp.h
+            rfft.h
+            RingBuffer.h
+            RssManager.h
+            RssReader.h
+            SaveFileStateJob.h
+            ScopeGuard.h
+            ScraperParser.h
+            ScraperUrl.h
+            Screenshot.h
+            SeekHandler.h
+            SortUtils.h
+            Speed.h
+            Splash.h
+            Stopwatch.h
+            StreamDetails.h
+            StreamUtils.h
+            StringUtils.h
+            StringValidation.h
+            SysfsUtils.h
+            SystemInfo.h
+            Temperature.h
+            TextSearch.h
+            TimeUtils.h
+            URIUtils.h
+            UrlOptions.h
+            Utf8Utils.h
+            uXstrings.h
+            Variant.h
+            Vector.h
+            Weather.h
+            XBMCTinyXML.h
+            XMLUtils.h
+            XSLTUtils.h)
 
 # The large map trips the clang optimizer
 if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
@@ -83,8 +171,17 @@ endif()
 if(NOT CORE_SYSTEM_NAME STREQUAL "windows")
   list(APPEND SOURCES CryptThreading.cpp
                       GLUtils.cpp)
+  list(APPEND HEADERS CryptThreading.h
+                      GLUtils.h)
 else()
   set_source_files_properties(fstrcmp.c PROPERTIES LANGUAGE CXX)
+endif()
+
+if(AMLCODEC_FOUND)
+  list(APPEND SOURCES AMLUtils.cpp
+                      ScreenshotAML.cpp)
+  list(APPEND HEADERS AMLUtils.h
+                      ScreenshotAML.h)
 endif()
 
 core_add_library(utils)

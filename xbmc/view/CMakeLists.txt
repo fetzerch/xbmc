@@ -3,5 +3,11 @@ set(SOURCES GUIViewControl.cpp
             ViewDatabase.cpp
             ViewStateSettings.cpp)
 
+set(HEADERS GUIViewControl.h
+            GUIViewState.h
+            ViewDatabase.h
+            ViewState.h
+            ViewStateSettings.h)
+
 core_add_library(view)
 add_dependencies(view libcpluff)

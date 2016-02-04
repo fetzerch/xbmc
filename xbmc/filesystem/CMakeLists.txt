@@ -79,21 +79,114 @@ set(SOURCES AddonsDirectory.cpp
             ZipFile.cpp
             ZipManager.cpp)
 
+set(HEADERS AddonsDirectory.h
+            CDDADirectory.h
+            CDDAFile.h
+            CacheStrategy.h
+            CircularCache.h
+            CurlFile.h
+            DAVCommon.h
+            DAVDirectory.h
+            DAVFile.h
+            Directorization.h
+            Directory.h
+            DirectoryCache.h
+            DirectoryFactory.h
+            DirectoryHistory.h
+            DllLibCurl.h
+            DllLibNfs.h
+            EventsDirectory.h
+            FTPDirectory.h
+            FTPParse.h
+            FavouritesDirectory.h
+            File.h
+            FileCache.h
+            FileDirectoryFactory.h
+            FileFactory.h
+            FileReaderFile.h
+            HTTPDirectory.h
+            HTTPFile.h
+            IDirectory.h
+            IFile.h
+            IFileDirectory.h
+            IFileTypes.h
+            ILiveTV.h
+            ImageFile.h
+            ISO9660Directory.h
+            ISOFile.h
+            iso9660.h
+            LibraryDirectory.h
+            MemBufferCache.h
+            MultiPathDirectory.h
+            MultiPathFile.h
+            MusicDatabaseDirectory.h
+            MusicDatabaseFile.h
+            MusicFileDirectory.h
+            MusicSearchDirectory.h
+            NFSDirectory.h
+            NFSFile.h
+            OverrideDirectory.h
+            OverrideFile.h
+            PVRDirectory.h
+            PVRFile.h
+            PipeFile.h
+            PipesManager.h
+            PlaylistDirectory.h
+            PlaylistFileDirectory.h
+            PluginDirectory.h
+            RSSDirectory.h
+            RarDirectory.h
+            RarFile.h
+            RarManager.h
+            ResourceDirectory.h
+            ResourceFile.h
+            SFTPDirectory.h
+            SFTPFile.h
+            ShoutcastFile.h
+            SmartPlaylistDirectory.h
+            SourcesDirectory.h
+            SpecialProtocol.h
+            SpecialProtocolDirectory.h
+            SpecialProtocolFile.h
+            StackDirectory.h
+            udf25.h
+            UDFDirectory.h
+            UDFFile.h
+            UPnPDirectory.h
+            UPnPFile.h
+            VideoDatabaseDirectory.h
+            VirtualDirectory.h
+            XbtDirectory.h
+            XbtFile.h
+            XbtManager.h
+            ZeroconfDirectory.h
+            ZipDirectory.h
+            ZipFile.h
+            ZipManager.h)
+
 if(OS STREQUAL "Android")
-  list(APPEND SOURCES AndroidAppDirectory.cpp
-                      AndroidAppFile.cpp
-                      APKDirectory.cpp
-                      APKFile.cpp)
+  list(APPEND SOURCES APKDirectory.cpp
+                      APKFile.cpp
+                      AndroidAppDirectory.cpp
+                      AndroidAppFile.cpp)
+  list(APPEND HEADERS APKDirectory.h
+                      APKFile.h
+                      AndroidAppDirectory.h
+                      AndroidAppFile.h)
 endif()
 
 if(NOT CMAKE_SYSTEM_NAME MATCHES "Windows")
   list(APPEND SOURCES SMBDirectory.cpp
                       SMBFile.cpp)
+  list(APPEND HEADERS SMBDirectory.h
+                      SMBFile.h)
 endif()
 
 if(BLURAY_FOUND)
   list(APPEND SOURCES BlurayDirectory.cpp
                       BlurayFile.cpp)
+  list(APPEND HEADERS BlurayDirectory.h
+                      BlurayFile.h)
 endif()
 
 include_directories(${CORE_SOURCE_DIR}/lib/libUPnP

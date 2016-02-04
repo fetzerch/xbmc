@@ -77,32 +77,144 @@ set(SOURCES DDSImage.cpp
             XBTF.cpp
             XBTFReader.cpp)
 
+set(HEADERS DDSImage.h
+            DirectXGraphics.h
+            DirtyRegion.h
+            DirtyRegionSolvers.h
+            DirtyRegionTracker.h
+            DispResource.h
+            DllLibGif.h
+            FFmpegImage.h
+            FrameBufferObject.h
+            Geometry.h
+            GraphicContext.h
+            gui3d.h
+            GUIAction.h
+            GUIAudioManager.h
+            GUIBaseContainer.h
+            GUIBorderedImage.h
+            GUIButtonControl.h
+            GUICallback.h
+            GUICheckMarkControl.h
+            GUIColorManager.h
+            GUIControl.h
+            GUIControlFactory.h
+            GUIControlGroup.h
+            GUIControlGroupList.h
+            GUIControlProfiler.h
+            GUIDialog.h
+            GUIEditControl.h
+            GUIFadeLabelControl.h
+            GUIFixedListContainer.h
+            GUIFont.h
+            GUIFontCache.h
+            GUIFontManager.h
+            GUIFontTTF.h
+            GUIImage.h
+            GUIIncludes.h
+            GUIInfoTypes.h
+            GUIKeyboard.h
+            GUIKeyboardFactory.h
+            GUILabel.h
+            GUILabelControl.h
+            GUIListContainer.h
+            GUIListGroup.h
+            GUIListItem.h
+            GUIListItemLayout.h
+            GUIListLabel.h
+            GUIMessage.h
+            GUIMoverControl.h
+            GUIMultiImage.h
+            GUIMultiSelectText.h
+            GUIPanelContainer.h
+            GUIProgressControl.h
+            GUIRadioButtonControl.h
+            GUIRenderingControl.h
+            GUIResizeControl.h
+            GUIRSSControl.h
+            GUIScrollBarControl.h
+            GUISelectButtonControl.h
+            GUISettingsSliderControl.h
+            GUISliderControl.h
+            GUISpinControl.h
+            GUISpinControlEx.h
+            GUIStaticItem.h
+            GUITextBox.h
+            GUITextLayout.h
+            GUITexture.h
+            GUIToggleButtonControl.h
+            GUIVideoControl.h
+            GUIVisualisationControl.h
+            GUIWindow.h
+            GUIWindowManager.h
+            GUIWrappingListContainer.h
+            IAudioDeviceChangedCallback.h
+            IDirtyRegionSolver.h
+            IGUIContainer.h
+            iimage.h
+            imagefactory.h
+            IMsgTargetCallback.h
+            IRenderingCallback.h
+            ISliderCallback.h
+            IWindowManagerCallback.h
+            LocalizeStrings.h
+            Resolution.h
+            Shader.h
+            StereoscopicsManager.h
+            Texture.h
+            TextureBundle.h
+            TextureBundleXBT.h
+            TextureBundleXPR.h
+            TextureManager.h
+            TransformMatrix.h
+            Tween.h
+            VisibleEffect.h
+            WindowIDs.h
+            XBTF.h
+            XBTFReader.h)
+
 if(OPENGL_FOUND)
-  list(APPEND SOURCES TextureGL.cpp
+  list(APPEND SOURCES GUIFontTTFGL.cpp
+                      GUITextureGL.cpp
                       MatrixGLES.cpp
-                      GUIFontTTFGL.cpp
-                      GUITextureGL.cpp)
+                      TextureGL.cpp)
+  list(APPEND HEADERS GUIFontTTFGL.h
+                      GUITextureGL.h
+                      MatrixGLES.h
+                      TextureGL.h)
 endif()
 
 if(GLES_FOUND)
-  list(APPEND SOURCES TextureGL.cpp
-                      TexturePi.cpp
-                      GUIFontTTFGL.cpp
+  list(APPEND SOURCES GUIFontTTFGL.cpp
+                      GUIShader.cpp
                       GUITextureGLES.cpp
                       MatrixGLES.cpp
-                      GUIShader.cpp)
+                      TextureGL.cpp
+                      TexturePi.cpp)
+  list(APPEND SOURCES GUIFontTTFGL.h
+                      GUIShader.h
+                      GUITextureGLES.h
+                      MatrixGLES.h
+                      TextureGL.h
+                      TexturePi.h)
 endif()
 
 if(GIF_FOUND OR WIN32)
   list(APPEND SOURCES Gif.cpp)
+  list(APPEND HEADERS Gif.h)
 endif()
 
 if(WIN32)
   list(APPEND SOURCES D3DResource.cpp
                       GUIFontTTFDX.cpp
-                      GUITextureD3D.cpp
                       GUIShaderDX.cpp
+                      GUITextureD3D.cpp
                       TextureDX.cpp)
+  list(APPEND HEADERS D3DResource.h
+                      GUIFontTTFDX.h
+                      GUIShaderDX.h
+                      GUITextureD3D.h
+                      TextureDX.h)
 endif()
 
 core_add_library(guilib)

@@ -5,6 +5,13 @@ set(SOURCES GUIWindowMusicBase.cpp
             GUIWindowVisualisation.cpp
             MusicFileItemListModifier.cpp)
 
+set(HEADERS GUIWindowMusicBase.h
+            GUIWindowMusicNav.h
+            GUIWindowMusicPlaylist.h
+            GUIWindowMusicPlaylistEditor.h
+            GUIWindowVisualisation.h
+            MusicFileItemListModifier.h)
+
 core_add_library(music_windows)
 add_dependencies(music_windows libcpluff)
 

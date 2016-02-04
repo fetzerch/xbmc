@@ -9,26 +9,40 @@ set(SOURCES BaseRenderer.cpp
             RenderFlags.cpp
             RenderManager.cpp)
 
+set(HEADERS BaseRenderer.h
+            OverlayRenderer.h
+            OverlayRendererGUI.h
+            OverlayRendererUtil.h
+            RenderCapture.h
+            RenderFlags.h
+            RenderFormats.h
+            RenderManager.h)
+
 if(WIN32)
   list(APPEND SOURCES WinRenderer.cpp
                       OverlayRendererDX.cpp)
+  list(APPEND HEADERS WinRenderer.h
+                      OverlayRendererDX.h)
 endif()
 
 if(OPENGL_FOUND)
   list(APPEND SOURCES OverlayRendererGL.cpp
                       LinuxRendererGL.cpp)
+  list(APPEND HEADERS OverlayRendererGL.h
+                      LinuxRendererGL.h)
 endif()
 
 if(GLES_FOUND)
   list(APPEND SOURCES LinuxRendererGLES.cpp
                       OverlayRendererGL.cpp)
-
+  list(APPEND HEADERS LinuxRendererGLES.h
+                      OverlayRendererGL.h)
 endif()
 
 if(ARCH MATCHES "arm")
   list(APPEND SOURCES yuv2rgb.neon.S)
+  list(APPEND HEADERS yuv2rgb.neon.h)
 endif()
-
 
 core_add_library(videorenderers)
 

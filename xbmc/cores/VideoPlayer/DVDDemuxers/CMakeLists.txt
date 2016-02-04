@@ -1,12 +1,23 @@
-set(SOURCES DVDDemuxBXA.cpp
+set(SOURCES DVDDemux.cpp
+            DVDDemuxBXA.cpp
             DVDDemuxCC.cpp
             DVDDemuxCDDA.cpp
-            DVDDemux.cpp
             DVDDemuxFFmpeg.cpp
             DVDDemuxPVRClient.cpp
             DVDDemuxUtils.cpp
             DVDDemuxVobsub.cpp
             DVDFactoryDemuxer.cpp)
+
+set(HEADERS DVDDemux.h
+            DVDDemuxBXA.h
+            DVDDemuxCC.h
+            DVDDemuxCDDA.h
+            DVDDemuxFFmpeg.h
+            DVDDemuxPVRClient.h
+            DVDDemuxPacket.h
+            DVDDemuxUtils.h
+            DVDDemuxVobsub.h
+            DVDFactoryDemuxer.h)
 
 core_add_library(dvddemuxers)
 add_dependencies(dvddemuxers libcpluff)

@@ -5,4 +5,11 @@ set(SOURCES VideoLibraryCleaningJob.cpp
             VideoLibraryRefreshingJob.cpp
             VideoLibraryScanningJob.cpp)
 
+set(HEADERS VideoLibraryCleaningJob.h
+            VideoLibraryJob.h
+            VideoLibraryMarkWatchedJob.h
+            VideoLibraryProgressJob.h
+            VideoLibraryRefreshingJob.h
+            VideoLibraryScanningJob.h)
+
 core_add_library(video_jobs)

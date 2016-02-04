@@ -8,5 +8,16 @@ set(SOURCES Album.cpp
             MusicThumbLoader.cpp
             Song.cpp)
 
+set(HEADERS Album.h
+            Artist.h
+            CueInfoLoader.h
+            EmbeddedArt.h
+            GUIViewStateMusic.h
+            MusicDatabase.h
+            MusicDbUrl.h
+            MusicInfoLoader.h
+            MusicThumbLoader.h
+            Song.h)
+
 core_add_library(music)
 add_dependencies(music libcpluff)

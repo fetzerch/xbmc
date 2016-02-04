@@ -9,4 +9,15 @@ set(SOURCES PlayListB4S.cpp
             SmartPlayList.cpp
             SmartPlaylistFileItemListModifier.cpp)
 
+set(HEADERS PlayList.h
+            PlayListB4S.h
+            PlayListFactory.h
+            PlayListM3U.h
+            PlayListPLS.h
+            PlayListURL.h
+            PlayListWPL.h
+            PlayListXML.h
+            SmartPlayList.h
+            SmartPlaylistFileItemListModifier.h)
+
 core_add_library(playlists)

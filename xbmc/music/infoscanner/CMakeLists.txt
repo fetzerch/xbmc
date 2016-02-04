@@ -3,5 +3,10 @@ set(SOURCES MusicAlbumInfo.cpp
             MusicInfoScanner.cpp
             MusicInfoScraper.cpp)
 
+set(HEADERS MusicAlbumInfo.h
+            MusicArtistInfo.h
+            MusicInfoScanner.h
+            MusicInfoScraper.h)
+
 core_add_library(music_infoscanner)
 add_dependencies(music_infoscanner libcpluff)
