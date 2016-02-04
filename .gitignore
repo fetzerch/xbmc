@@ -56,6 +56,9 @@ config.log
 
 # osx specifics
 /build/
+/kodi.build/
+/Debug/
+/Release/
 .DS_Store
 *.dSYM
 ._*
@@ -63,13 +66,13 @@ config.log
 *.pbxuser
 *project.xcworkspace
 *xcuserdata
-
 .libs/
 .deps/
 
 # CMake project files
 CMakeCache.txt
 CMakeFiles
+CMakeScripts
 CTestTestfile.cmake
 cmake_install.cmake
 
@@ -95,7 +98,8 @@ cmake_install.cmake
 /build-aux/missing
 /build-aux/ltmain.sh
 /autotools
-/BUILD
+/BUILD/
+
 /kodi.log
 /kodi.old.log
 /Makefile.depend
