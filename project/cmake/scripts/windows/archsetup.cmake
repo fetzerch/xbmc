@@ -75,3 +75,10 @@ set(_delayloadlibs libxslt.dll dnssd.dll dwmapi.dll ssh.dll sqlite3.dll
 foreach(_lib ${_delayloadlibs})
   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /DELAYLOAD:\"${_lib}\"")
 endforeach()
+
+
+# -------- Visual Studio options ---------
+
+if(CMAKE_GENERATOR MATCHES "Visual Studio")
+  set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+endif()

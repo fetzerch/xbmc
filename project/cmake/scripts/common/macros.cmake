@@ -27,6 +27,16 @@ function(core_add_library name)
     add_precompiled_header(${name} pch.h ${CORE_SOURCE_DIR}/xbmc/win32/pch.cpp
                            PCH_TARGET kodi)
   endif()
+
+  # IDE support
+  if(CMAKE_GENERATOR MATCHES "Xcode")
+    file(RELATIVE_PATH parentfolder ${CORE_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/..)
+    set_target_properties(${name} PROPERTIES FOLDER "${parentfolder}")
+  elseif(CMAKE_GENERATOR MATCHES "Visual Studio")
+    file(RELATIVE_PATH foldername ${CORE_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
+    set_target_properties(${name} PROPERTIES FOLDER "${foldername}")
+    source_group(" " REGULAR_EXPRESSION ".*")
+  endif()
 endfunction()
 
 # Add a test library, and add sources to list for gtest integration macros
