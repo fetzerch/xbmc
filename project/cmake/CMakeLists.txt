@@ -287,8 +287,11 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   set(LD_WHOLEARCHIVE_END -Wl,--no-whole-archive)
 endif()
 
+# Other files (IDE)
+set(OTHER_FILES README.md)
+
 # main binary
-add_executable(${APP_NAME_LC}.bin $<TARGET_OBJECTS:compileinfo> "${RESOURCES}")
+add_executable(${APP_NAME_LC}.bin $<TARGET_OBJECTS:compileinfo> "${RESOURCES}" ${OTHER_FILES})
 target_link_libraries(${APP_NAME_LC}.bin ${SYSTEM_LDFLAGS} ${LD_WHOLEARCHIVE_BEGIN} ${core_DEPENDS} ${LD_WHOLEARCHIVE_END}
                       ${DEPLIBS} ${CMAKE_DL_LIBS})
 add_dependencies(${APP_NAME_LC}.bin export-files)
