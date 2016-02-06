@@ -164,7 +164,7 @@ set(HEADERS AddonsDirectory.h
             ZipFile.h
             ZipManager.h)
 
-if(OS STREQUAL "Android")
+if(CORE_SYSTEM_NAME STREQUAL android)
   list(APPEND SOURCES APKDirectory.cpp
                       APKFile.cpp
                       AndroidAppDirectory.cpp
@@ -175,7 +175,7 @@ if(OS STREQUAL "Android")
                       AndroidAppFile.h)
 endif()
 
-if(NOT CMAKE_SYSTEM_NAME MATCHES "Windows")
+if(NOT CORE_SYSTEM_NAME STREQUAL windows)
   list(APPEND SOURCES SMBDirectory.cpp
                       SMBFile.cpp)
   list(APPEND HEADERS SMBDirectory.h

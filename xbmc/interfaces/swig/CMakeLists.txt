@@ -3,7 +3,7 @@ macro(generate_file file)
                 ${GROOVY_DIR}/commons-lang-${COMMONS_VER}.jar
                 ${CORE_SOURCE_DIR}/tools/codegenerator
                 ${CMAKE_CURRENT_SOURCE_DIR}/../python)
-  if(NOT WIN32)
+  if(NOT CORE_SYSTEM_NAME STREQUAL windows)
     set(devnull "/dev/null")
     string(REPLACE ";" ":" classpath "${classpath}")
   else()

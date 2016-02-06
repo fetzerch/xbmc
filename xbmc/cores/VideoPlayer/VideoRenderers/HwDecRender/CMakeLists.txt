@@ -1,7 +1,7 @@
 set(SOURCES)
 set(HEADERS)
 
-if(CORE_SYSTEM_NAME STREQUAL "windows")
+if(CORE_SYSTEM_NAME STREQUAL windows)
   list(APPEND SOURCES DXVAHD.cpp)
   list(APPEND HEADERS DXVAHD.h)
 endif()
@@ -16,12 +16,12 @@ if(VDPAU_FOUND)
   list(APPEND HEADERS RendererVDPAU.h)
 endif()
 
-if(CORE_SYSTEM_NAME STREQUAL "darwin")
+if(CORE_SYSTEM_NAME STREQUAL darwin)
   list(APPEND SOURCES RendererVDA.cpp)
   list(APPEND HEADERS RendererVDA.h)
 endif()
 
-if(CORE_SYSTEM_NAME STREQUAL "ios")
+if(CORE_SYSTEM_NAME STREQUAL ios)
   list(APPEND SOURCES RendererVTB.cpp)
   list(APPEND HEADERS RendererVTB.h)
 endif()
@@ -46,7 +46,7 @@ if(IMX_FOUND)
   list(APPEND HEADERS RendererIMX.h)
 endif()
 
-if(CORE_SYSTEM_NAME MATCHES "android")
+if(CORE_SYSTEM_NAME STREQUAL android)
   list(APPEND SOURCES RendererMediaCodec.cpp
                       RendererMediaCodecSurface.cpp)
   list(APPEND HEADERS RendererMediaCodec.h

@@ -199,18 +199,20 @@ if(GLES_FOUND)
                       TexturePi.h)
 endif()
 
-if(GIF_FOUND OR WIN32)
+if(GIF_FOUND)
   list(APPEND SOURCES Gif.cpp)
   list(APPEND HEADERS Gif.h)
 endif()
 
-if(WIN32)
+if(CORE_SYSTEM_NAME STREQUAL windows)
   list(APPEND SOURCES D3DResource.cpp
+                      Gif.cpp
                       GUIFontTTFDX.cpp
                       GUIShaderDX.cpp
                       GUITextureD3D.cpp
                       TextureDX.cpp)
   list(APPEND HEADERS D3DResource.h
+                      Gif.h
                       GUIFontTTFDX.h
                       GUIShaderDX.h
                       GUITextureD3D.h
@@ -224,7 +226,7 @@ if(ENABLE_INTERNAL_FFMPEG)
   add_dependencies(guilib ffmpeg)
 endif()
 
-if(WIN32)
+if(CORE_SYSTEM_NAME STREQUAL windows)
   set(SHADERS_VERTEX guishader_vert.hlsl)
   set(SHADERS_PIXEL guishader_checkerboard_right.hlsl
                     guishader_checkerboard_left.hlsl

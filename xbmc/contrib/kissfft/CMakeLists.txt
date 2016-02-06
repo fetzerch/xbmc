@@ -5,7 +5,7 @@ set(HEADERS _kiss_fft_guts.h
             kiss_fft.h
             kiss_fftr.h)
 
-if(CORE_SYSTEM_NAME MATCHES "windows")
+if(CORE_SYSTEM_NAME STREQUAL windows)
   set_source_files_properties(${SOURCES} PROPERTIES LANGUAGE CXX)
 endif()
 

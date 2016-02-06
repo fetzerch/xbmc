@@ -17,6 +17,6 @@ if(ENABLE_INTERNAL_FFMPEG)
   add_dependencies(storage ffmpeg)
 endif()
 
-if(NOT CMAKE_SYSTEM_NAME MATCHES "Windows")
+if(NOT CORE_SYSTEM_NAME STREQUAL windows)
   add_dependencies(storage dvdnav)
 endif()

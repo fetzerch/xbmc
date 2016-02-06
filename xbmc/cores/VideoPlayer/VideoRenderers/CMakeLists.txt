@@ -18,7 +18,7 @@ set(HEADERS BaseRenderer.h
             RenderFormats.h
             RenderManager.h)
 
-if(WIN32)
+if(CORE_SYSTEM_NAME STREQUAL windows)
   list(APPEND SOURCES WinRenderer.cpp
                       OverlayRendererDX.cpp)
   list(APPEND HEADERS WinRenderer.h
@@ -39,7 +39,7 @@ if(GLES_FOUND)
                       OverlayRendererGL.h)
 endif()
 
-if(ARCH MATCHES "arm")
+if(ARCH STREQUAL arm)
   list(APPEND SOURCES yuv2rgb.neon.S)
   list(APPEND HEADERS yuv2rgb.neon.h)
 endif()

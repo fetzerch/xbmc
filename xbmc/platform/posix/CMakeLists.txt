@@ -1,6 +1,6 @@
 set(SOURCES main.cpp)
 
-if(NOT CMAKE_SYSTEM_NAME MATCHES "Windows")
+if(NOT CORE_SYSTEM_NAME STREQUAL windows)
   list(APPEND SOURCES MessagePrinter.cpp)
 endif()
 

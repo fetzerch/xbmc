@@ -81,21 +81,21 @@ if(FFMPEG_FOUND)
   list(APPEND HEADERS Engines/ActiveAE/ActiveAEResampleFFMPEG.h)
 endif()
 
-if(WIN32)
+if(CORE_SYSTEM_NAME STREQUAL windows)
   list(APPEND SOURCES Sinks/AESinkDirectSound.cpp
                       Sinks/AESinkWASAPI.cpp)
   list(APPEND HEADERS Sinks/AESinkDirectSound.h
                       Sinks/AESinkWASAPI.h)
 endif()
 
-if(CORE_SYSTEM_NAME STREQUAL "rbpi")
+if(CORE_SYSTEM_NAME STREQUAL rbpi)
   list(APPEND SOURCES Engines/ActiveAE/ActiveAEResamplePi.cpp
                       Sinks/AESinkPi.cpp)
   list(APPEND HEADERS Engines/ActiveAE/ActiveAEResamplePi.h
                       Sinks/AESinkPi.h)
 endif()
 
-if(CORE_SYSTEM_NAME STREQUAL "darwin" OR CORE_SYSTEM_NAME STREQUAL "ios")
+if(CORE_SYSTEM_NAME STREQUAL darwin OR CORE_SYSTEM_NAME STREQUAL ios)
   list(APPEND SOURCES Sinks/osx/AEDeviceEnumerationOSX.cpp
                       Sinks/osx/CoreAudioChannelLayout.cpp
                       Sinks/osx/CoreAudioDevice.cpp
@@ -109,16 +109,16 @@ if(CORE_SYSTEM_NAME STREQUAL "darwin" OR CORE_SYSTEM_NAME STREQUAL "ios")
                       Sinks/osx/CoreAudioHelpers.h
                       Sinks/osx/CoreAudioStream.h)
 
-  if(CORE_SYSTEM_NAME STREQUAL "darwin")
+  if(CORE_SYSTEM_NAME STREQUAL darwin)
     list(APPEND SOURCES Sinks/AESinkDARWINOSX.cpp)
     list(APPEND HEADERS Sinks/AESinkDARWINOSX.h)
-  elseif(CORE_SYSTEM_NAME STREQUAL "ios")
+  elseif(CORE_SYSTEM_NAME STREQUAL ios)
     list(APPEND SOURCES Sinks/AESinkDARWINIOS.mm)
     list(APPEND HEADERS Sinks/AESinkDARWINIOS.h)
   endif()
 endif()
 
-if(CORE_SYSTEM_NAME MATCHES "android")
+if(CORE_SYSTEM_NAME STREQUAL android)
   list(APPEND SOURCES Sinks/AESinkAUDIOTRACK.cpp)
   list(APPEND HEADERS Sinks/AESinkAUDIOTRACK.h)
 endif()

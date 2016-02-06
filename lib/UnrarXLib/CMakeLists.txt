@@ -41,15 +41,12 @@ set(SOURCES archive.cpp
             unpack.cpp
             volume.cpp)
 
-if(NOT WIN32)
-  add_definitions(-DSILENT)
-else()
-  add_definitions(-D_XBMC)
-endif()
-
 core_add_library(unrarxlib)
 
-if(WIN32)
+if(CORE_SYSTEM_NAME STREQUAL windows)
+  target_compile_definitions(unrarxlib PRIVATE -D_XBMC)
   add_precompiled_header(unrarxlib rar.hpp rar.cpp
                          EXCLUDE_SOURCES consio.cpp global.cpp)
+else()
+  target_compile_definitions(unrarxlib PRIVATE -DSILENT)
 endif()

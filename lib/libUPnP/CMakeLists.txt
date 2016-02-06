@@ -79,7 +79,7 @@ include_directories(Neptune/Source/Core
                     Neptune/Source/System/Posix
                     Platinum/Source/Extras)
 
-if(NOT CMAKE_SYSTEM_NAME MATCHES "Windows")
+if(NOT CORE_SYSTEM_NAME STREQUAL windows)
   list(APPEND SOURCES Neptune/Source/System/Posix/NptPosixSystem.cpp
                       Neptune/Source/System/Posix/NptSelectableMessageQueue.cpp
                       Neptune/Source/System/Posix/NptPosixQueue.cpp
@@ -101,7 +101,7 @@ else()
   include_directories(Neptune/Source/System/Win32)
 endif()
 
-if(CORE_SYSTEM_NAME MATCHES "darwin" OR CORE_SYSTEM_NAME MATCHES "ios")
+if(CORE_SYSTEM_NAME STREQUAL darwin OR CORE_SYSTEM_NAME STREQUAL ios)
   list(APPEND SOURCES Neptune/Source/System/Apple/NptAppleAutoreleasePool.mm
                       Neptune/Source/System/Apple/NptAppleLogConfig.mm)
 endif()

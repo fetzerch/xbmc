@@ -25,7 +25,7 @@ if(OPENMAX_FOUND)
                       OpenMaxVideo.h)
 endif()
 
-if(WIN32)
+if(CORE_SYSTEM_NAME STREQUAL windows)
   list(APPEND SOURCES DXVA.cpp)
   list(APPEND HEADERS DXVA.h)
 endif()
@@ -40,7 +40,7 @@ if(VAAPI_FOUND)
   list(APPEND HEADERS VAAPI.h)
 endif()
 
-if(CORE_SYSTEM_NAME STREQUAL "darwin")
+if(CORE_SYSTEM_NAME STREQUAL darwin)
   list(APPEND SOURCES DVDVideoCodecVDA.cpp
                       VDA.cpp)
   list(APPEND HEADERS DVDVideoCodecVDA.h
@@ -63,7 +63,7 @@ if(IMX_FOUND)
   list(APPEND HEADERS DVDVideoCodecIMX.h)
 endif()
 
-if(CORE_SYSTEM_NAME MATCHES "android")
+if(CORE_SYSTEM_NAME STREQUAL android)
   list(APPEND SOURCES DVDVideoCodecAndroidMediaCodec.cpp)
   list(APPEND HEADERS DVDVideoCodecAndroidMediaCodec.h)
 endif()

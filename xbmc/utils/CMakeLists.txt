@@ -164,11 +164,11 @@ set(HEADERS ActorProtocol.h
             XSLTUtils.h)
 
 # The large map trips the clang optimizer
-if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+if(CMAKE_CXX_COMPILER_ID STREQUAL Clang)
   set_source_files_properties(Mime.cpp PROPERTIES COMPILE_FLAGS -O0)
 endif()
 
-if(NOT CORE_SYSTEM_NAME STREQUAL "windows")
+if(NOT CORE_SYSTEM_NAME STREQUAL windows)
   list(APPEND SOURCES CryptThreading.cpp
                       GLUtils.cpp)
   list(APPEND HEADERS CryptThreading.h

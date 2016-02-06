@@ -19,7 +19,7 @@ set(HEADERS coff.h
             dll_util.h
             LibraryLoader.h)
 
-if(NOT CMAKE_SYSTEM_NAME STREQUAL "Windows")
+if(NOT CORE_SYSTEM_NAME STREQUAL windows)
   list(APPEND SOURCES mmap_anon.c
                       ldt_keeper.c
                       SoLoader.cpp)
