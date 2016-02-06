@@ -6,9 +6,6 @@ set(HEADERS EGLNativeType.h
             EGLWrapper.h
             WinSystemEGL.h)
 
-if(WAYLAND_FOUND)
-  list(APPEND SOURCES EGLNativeTypeWayland.cpp)
-endif()
 
 if(MMAL_FOUND)
   list(APPEND SOURCES EGLNativeTypeRaspberryPI.cpp)

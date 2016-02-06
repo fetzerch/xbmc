@@ -39,7 +39,6 @@ if(UNIX)
   option(ENABLE_OPENGLES    "Enable OpenGLES?" ON)
   option(ENABLE_SDL         "Enable SDL?" OFF)
   option(ENABLE_X11         "Enable X11 support?" ON)
-  option(ENABLE_WAYLAND     "Enable Wayland support?" OFF)
   option(ENABLE_EGL         "Enable EGL?" OFF)
   option(ENABLE_VAAPI       "Enable VAAPI support?" ON)
   option(ENABLE_VDPAU       "Enable VDPAU support?" ON)
@@ -102,7 +101,7 @@ endif()
 
 # Optional dependencies
 set(optional_deps MicroHttpd MySqlClient SSH
-                  Alsa UDev Dbus Avahi Wayland
+                  Alsa UDev Dbus Avahi
                   PulseAudio VDPAU VAAPI)
 
 # Required, dyloaded deps

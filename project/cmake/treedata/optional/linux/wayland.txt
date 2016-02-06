@@ -1,2 +1,0 @@
-xbmc/windowing/wayland windowing/wayland # WAYLAND;EGL
-xbmc/windowing/egl/wayland windowing/egl/wayland # WAYLAND;EGL
