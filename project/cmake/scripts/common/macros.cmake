@@ -322,10 +322,12 @@ function(core_find_git_rev)
     find_package(Git)
     if(GIT_FOUND AND EXISTS ${CORE_SOURCE_DIR}/.git)
       execute_process(COMMAND ${GIT_EXECUTABLE} diff-files --ignore-submodules --quiet --
-                      RESULT_VARIABLE status_code)
+                      RESULT_VARIABLE status_code
+                      WORKING_DIRECTORY ${CORE_SOURCE_DIR})
       if (NOT status_code)
         execute_process(COMMAND ${GIT_EXECUTABLE} diff-index --cached --ignore-submodules --quiet HEAD --
-                        RESULT_VARIABLE status_code)
+                        RESULT_VARIABLE status_code
+                        WORKING_DIRECTORY ${CORE_SOURCE_DIR})
       endif()
       today(DATE)
       execute_process(COMMAND ${GIT_EXECUTABLE} --no-pager log --abbrev=7 -n 1
