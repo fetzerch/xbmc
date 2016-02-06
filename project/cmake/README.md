@@ -1,51 +1,109 @@
 # Kodi CMake based buildsystem
 
-## Dependencies
+This files describes Kodi's CMake based buildsystem. CMake is a cross-platform
+tool for generating makefiles as well as project files used by IDEs.
+
+The current version of the buildsystem is capable of building the main Kodi
+executable (but no packaging or dependency management yet) for the following
+platforms:
+
+- Linux (GNU Makefiles)
+- Windows (NMake Makefiles, Visual Studio 12 (2013))
+- OSX (GNU Makefiles, Xcode)
 
 Before building Kodi with CMake, please ensure that you have the platform
 specific dependencies installed.
 
-For Linux the required dependencies can be found in
+While the legacy build systems typically used in-source builds it's recommended
+to use out-of-source builds with CMake. The necessary runtime dependencies such
+as dlls, skins and configuration files are copied over to the build directory
+automatically.
+
+## Dependency installation
+
+### Linux
+
+The dependencies required to build on Linux can be found in
 [docs/README.xxx](https://github.com/xbmc/xbmc/tree/master/docs).
+
+### Windows
 
 For Windows the dependencies can be found in the
 [Wiki](http://kodi.wiki/view/HOW-TO:Compile_Kodi_for_Windows) (Step 1-4).
 
+On Windows, the CMake based buildsystem requires that the binary dependencies
+are downloaded using `DownloadBuildDeps.bat` and `DownloadMingwBuildEnv.bat`
+and that the mingw libs (ffmpeg, libdvd and others) are built using
+`make-mingwlibs.bat`.
+
+### OSX
+
 For OSX the required dependencies can be found in
 [docs/README.osx](https://github.com/xbmc/xbmc/tree/master/docs/README.osx).
 
+On OSX it is necessary to build the dependencies in `tools/depends` using
+`./bootstrap && ./configure --host=<PLATFORM> && make`. The other steps such
+as `make -C tools/depends/target/xbmc` and `make xcode_depends` are not needed
+as these steps are covered already by the CMake project.
+
 ## Building Kodi
 
-In order to configure Kodi with CMake execute the following.
-For an out-of-source build and Kodi cloned into a `kodi` directory.
+This section lists the necessary commands for building Kodi with CMake.
+CMake supports different generators that can be classified into two categories:
+single- and multiconfiguration generators.
+
+A single configuration generator (GNU/NMake Makefiles) generates project files
+for a single build type (e.g. Debug, Release) specified at configure time.
+Multi configuration generators (Visual Studio, Xcode) allow to specify the
+build type at compile time.
+
+All examples below are for out-of-source builds with Kodi checked out to
+`<KODI_SRC>`:
 
 ```
-mkdir kodi-build
-cd kodi-build
-cmake ../kodi/project/cmake
+mkdir kodi-build && cd kodi-build
 ```
 
-Then, to start the build on Linux:
+### Linux with GNU Makefiles
 
 ```
-make -j$(nproc)
+cmake <KODI_SRC>/project/cmake/
+cmake --build . -- VERBOSE=1 -j$(nproc)  # or: make VERBOSE=1 -j$(nproc)
+./kodi.bin
 ```
 
-On Windows:
+`CMAKE_BUILD_TYPE` defaults to `Debug`.
+
+### Windows with NMake Makefiles
 
 ```
-nmake
+cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release <KODI_SRC>/project/cmake/
+cmake --build .  # or: nmake
+./kodi.bin
 ```
 
-For OSX the Toolchain file that is generated in the dependency build has to be
-passed to CMake:
+### Windows with Visual Studio project files
 
 ```
-mkdir kodi-build
-cd kodi-build
-cmake -DCMAKE_TOOLCHAIN_FILE=../kodi/tools/depends/target/Toolchain.cmake \
-      ../kodi/project/cmake
-make -j$(sysctl -n hw.ncpu)
+cmake -G "Visual Studio 12 (2013)" <KODI_SRC>/project/cmake/
+cmake --build . --config "Debug"  # or: Build solution with Visual Studio
+KODI_HOME=%CD% Debug/kodi.bin
+```
+
+### OSX with GNU Makefiles
+
+```
+cmake -DCMAKE_TOOLCHAIN_FILE=<KODI_SRC>/tools/depends/target/Toolchain.cmake <KODI_SRC>/project/cmake/
+cmake --build . -- VERBOSE=1 -j$(sysctl -n hw.ncpu)  # or: make VERBOSE=1 -j$(sysctl -n hw.ncpu)
+./kodi.bin
+```
+
+### OSX with Xcode project files
+
+```
+cmake -DCMAKE_TOOLCHAIN_FILE=<KODI_SRC>/tools/depends/target/Toolchain.cmake -G "Xcode" <KODI_SRC>/project/cmake/
+cmake --build . --config "Release" -- -verbose -jobs $(sysctl -n hw.ncpu)  # or: Build solution with Xcode
+KODI_HOME=$(pwd) ./Release/kodi.bin
 ```
 
 ## Debugging the build
