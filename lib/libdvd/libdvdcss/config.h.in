@@ -1,0 +1,30 @@
+#define VERSION "@PROJECT_VERSION@"
+
+#cmakedefine HAVE_ERRNO_H
+#cmakedefine HAVE_FNCTL_H
+#cmakedefine HAVE_IO_H
+#cmakedefine HAVE_INTTYPES_H
+#cmakedefine HAVE_LIMITS_H
+#cmakedefine HAVE_PWD_H
+#cmakedefine HAVE_STDINT_H
+#cmakedefine HAVE_SYS_PARAM_H
+#cmakedefine HAVE_SYS_STAT_H
+#cmakedefine HAVE_SYS_TYPES_H
+#cmakedefine HAVE_SYS_UIO_H
+#cmakedefine HAVE_SYS_UNISTD_H
+
+#cmakedefine HAVE_LINUX_DVD_STRUCT
+#if defined (HAVE_LINUX_DVD_STRUCT)
+  #define DVD_STRUCT_IN_LINUX_CDROM_H
+#endif
+
+#cmakedefine DARWIN_DVD_IOCTL
+
+#cmakedefine HAVE_O_BINARY
+#if !defined (HAVE_O_BINARY)
+  #define O_BINARY 0
+#endif
+
+#if defined (_WINDOWS)
+  #include <windows.h>  // MAX_PATH
+#endif
