@@ -296,6 +296,7 @@ target_link_libraries(${APP_NAME_LC}.bin ${SYSTEM_LDFLAGS} ${LD_WHOLEARCHIVE_BEG
                       ${DEPLIBS} ${CMAKE_DL_LIBS})
 add_dependencies(${APP_NAME_LC}.bin export-files)
 if(WIN32)
+  set_target_properties(${APP_NAME_LC}.bin PROPERTIES WIN32_EXECUTABLE ON)
   copy_main_dlls_to_buildtree()
 endif()
 

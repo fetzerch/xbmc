@@ -190,7 +190,7 @@ if(GLES_FOUND)
                       MatrixGLES.cpp
                       TextureGL.cpp
                       TexturePi.cpp)
-  list(APPEND SOURCES GUIFontTTFGL.h
+  list(APPEND HEADERS GUIFontTTFGL.h
                       GUIShader.h
                       GUITextureGLES.h
                       MatrixGLES.h
