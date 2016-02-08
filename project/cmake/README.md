@@ -85,7 +85,7 @@ cmake --build .  # or: nmake
 ### Windows with Visual Studio project files
 
 ```
-cmake -G "Visual Studio 12 (2013)" <KODI_SRC>/project/cmake/
+cmake -G "Visual Studio 12" <KODI_SRC>/project/cmake/
 cmake --build . --config "Debug"  # or: Build solution with Visual Studio
 KODI_HOME=%CD% Debug/kodi.bin
 ```
@@ -105,6 +105,12 @@ cmake -DCMAKE_TOOLCHAIN_FILE=<KODI_SRC>/tools/depends/target/Toolchain.cmake -G 
 cmake --build . --config "Release" -- -verbose -jobs $(sysctl -n hw.ncpu)  # or: Build solution with Xcode
 KODI_HOME=$(pwd) ./Release/kodi.bin
 ```
+
+## Extra targets
+
+When using the makefile builds a few extra targets are defined:
+
+- `make check` builds and executes the test suite.
 
 ## Debugging the build
 
