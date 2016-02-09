@@ -9,7 +9,6 @@ xbmc/powermanagement/windows powermanagement/windows
 xbmc/storage/windows         storage/windows
 xbmc/filesystem/win32        filesystem/win32
 xbmc/utils/win32             utils_win32
-xbmc/platform/posix          platform_posix
 xbmc/platform/win32          platform_win32
 xbmc/rendering/dx            rendering_dx
 xbmc/threads/platform/win    threads_win
