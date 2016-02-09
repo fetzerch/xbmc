@@ -1,5 +1,9 @@
 list(APPEND CMAKE_MODULE_PATH ${CORE_SOURCE_DIR}/project/cmake/modules)
 
+if(APPLE)
+  set(CMAKE_FIND_ROOT_PATH ${NATIVEPREFIX})
+endif()
+
 find_package(Lzo2 REQUIRED)
 find_package(PNG REQUIRED)
 find_package(GIF REQUIRED)
