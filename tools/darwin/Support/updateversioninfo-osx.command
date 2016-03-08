@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eux
+
 # Update version in Info.plist with Git revision
 GIT_REVISION="Unknown"
 BUNDLE_NAME="$APP_NAME"
