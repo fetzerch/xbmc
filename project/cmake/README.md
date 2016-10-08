@@ -1,6 +1,6 @@
-# Kodi CMake based buildsystem
+# Kodi CMake based buildsystem - User Guide
 
-This files describes Kodi's CMake based buildsystem. CMake is a cross-platform
+This file describes Kodi's CMake based buildsystem. CMake is a cross-platform
 tool for generating makefiles as well as project files used by IDEs.
 
 The current version of the buildsystem is capable of building and packaging
@@ -19,6 +19,10 @@ While the legacy build systems typically used in-source builds it's recommended
 to use out-of-source builds with CMake. The necessary runtime dependencies such
 as dlls, skins and configuration files are copied over to the build directory
 automatically.
+
+The internal documentation for developers that need to extend the
+buildsystem can be found in
+[project/cmake/Documentation.md](https://github.com/xbmc/xbmc/tree/master/project/cmake/Documentation.md).
 
 ## Dependency installation
 
