@@ -1,0 +1,35 @@
+cmake_minimum_required(VERSION 3.3)
+
+
+# Marks header file as being overridden on a certain list of platforms.
+#
+# This avoids globbing as overriding for a new platform has to me marked explicitly,
+# CMakeFile is touched and project is reconfigured.
+#
+# Usage: add_override(${PROJECT_NAME} settings.h PLATFORMS android linux osx)
+macro(add_override target filename)
+  cmake_parse_arguments(ARG "" "" "PLATFORMS" ${ARGN})
+  if(NOT ARG_PLATFORMS)
+    message(FATAL_ERROR "Missing parameter PLATFORMS")
+  endif()
+  if(${PLATFORM} IN_LIST ARG_PLATFORMS)
+    message(STATUS "Override active for ${filename} on ${PLATFORM}")
+    target_include_directories(${target} PRIVATE ${CMAKE_SOURCE_DIR}/overrides/${PLATFORM})
+  else()
+    message(STATUS "Override disabled for ${filename}, using generic implementation")
+    target_include_directories(${target} PRIVATE ${CMAKE_SOURCE_DIR}/overrides/generic)
+  endif()
+endmacro()
+
+
+# Project starts here
+# override with -DPLATFORM=android for testing
+project(platform_override)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_INCLUDE_CURRENT_DIR TRUE)
+
+set(PLATFORM linux CACHE STRING "The platform we build for")
+
+set(SOURCES main.cpp)
+add_executable(${PROJECT_NAME} ${SOURCES})
+add_override(${PROJECT_NAME} settings.h PLATFORMS android)
