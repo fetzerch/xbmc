@@ -1,0 +1,4 @@
+#pragma once
+
+#cmakedefine SETTING_X "${SETTING_X}"
+#cmakedefine SETTING_Y  ${SETTING_Y}
