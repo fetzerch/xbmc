@@ -276,6 +276,8 @@ bool CGameClient::OpenFile(const CFileItem& file, IGameAudioCallback* audio, IGa
   if (!InitializeGameplay(file.GetPath(), audio, video))
     return false;
 
+  LoadSRAM();
+
   return true;
 }
 
@@ -486,6 +488,8 @@ void CGameClient::CloseFile()
 
   if (m_bIsPlaying)
   {
+    SaveSRAM();
+
     try { LogError(m_pStruct->UnloadGame(), "UnloadGame()"); }
     catch (...) { LogException("UnloadGame()"); }
   }
@@ -711,6 +715,58 @@ bool CGameClient::Deserialize(const uint8_t* data, size_t size)
   }
 
   return bSuccess;
+}
+
+void CGameClient::LoadSRAM()
+{
+  std::string path = URIUtils::AddFileToFolder(CProfilesManager::GetInstance().GetSavestatesFolder(), "SRAM");
+              path = URIUtils::AddFileToFolder(path, URIUtils::GetFileName(m_gamePath));
+
+  uint8_t *data;
+  size_t size;
+  m_pStruct->GetMemory(GAME_MEMORY_SAVE_RAM, &data, &size);
+
+  std::string sramPath = path + ".sram";
+  XFILE::CFile sramFile;
+  if (sramFile.Open(sramPath))
+  {
+    ssize_t read = sramFile.Read(data, size);
+    if (read != (ssize_t)size)
+    {
+      CLog::Log(LOGERROR, "GAME: Failed read from SRAM file %s", sramPath.c_str());
+    }
+  }
+  else
+  {
+    CLog::Log(LOGERROR, "GAME: Unable to open SRAM file %s", sramPath.c_str());
+  }
+}
+
+void CGameClient::SaveSRAM()
+{
+  std::string path = URIUtils::AddFileToFolder(CProfilesManager::GetInstance().GetSavestatesFolder(), "SRAM");
+              path = URIUtils::AddFileToFolder(path, URIUtils::GetFileName(m_gamePath));
+
+  uint8_t *data;
+  size_t size;
+  m_pStruct->GetMemory(GAME_MEMORY_SAVE_RAM, &data, &size);
+
+  std::string sramPath = path + ".sram";
+  XFILE::CFile sramFile;
+  if (sramFile.OpenForWrite(sramPath, true))
+  {
+    ssize_t written = 0;
+    written = sramFile.Write(data, size);
+    sramFile.Close();
+    if (written != (ssize_t)size)
+    {
+      CLog::Log(LOGERROR, "GAME: Unable to write complete SRAM file %s", sramPath.c_str());
+    }
+  }
+  else
+  {
+    CLog::Log(LOGERROR, "GAME: Unable to write SRAM file %s", sramPath.c_str());
+  }
 }
 
 bool CGameClient::OpenPort(unsigned int port)

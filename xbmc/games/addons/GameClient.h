@@ -101,6 +101,10 @@ public:
   bool Serialize(uint8_t* data, size_t size);
   bool Deserialize(const uint8_t* data, size_t size);
 
+  // SRAM saves
+  void SaveSRAM();
+  void LoadSRAM();
+
   // Input callbacks
   bool OpenPort(unsigned int port);
   void ClosePort(unsigned int port);
