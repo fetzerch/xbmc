@@ -1,1 +1,1 @@
-game.libretro.snes9x https://github.com/kodi-game/game.libretro.snes9x master
+game.libretro.snes9x https://github.com/kodi-game/game.libretro.snes9x script-test

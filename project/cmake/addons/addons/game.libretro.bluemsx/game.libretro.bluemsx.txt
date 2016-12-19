@@ -1,1 +1,1 @@
-game.libretro.bluemsx https://github.com/kodi-game/game.libretro.bluemsx master
+game.libretro.bluemsx https://github.com/kodi-game/game.libretro.bluemsx script-test

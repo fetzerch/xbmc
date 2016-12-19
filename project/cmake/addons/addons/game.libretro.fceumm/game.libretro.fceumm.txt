@@ -1,1 +1,1 @@
-game.libretro.fceumm https://github.com/kodi-game/game.libretro.fceumm master
+game.libretro.fceumm https://github.com/kodi-game/game.libretro.fceumm script-test

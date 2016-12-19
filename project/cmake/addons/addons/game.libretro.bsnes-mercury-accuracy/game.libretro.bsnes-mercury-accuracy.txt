@@ -1,1 +1,1 @@
-game.libretro.bsnes-mercury-accuracy https://github.com/kodi-game/game.libretro.bsnes-mercury-accuracy master
+game.libretro.bsnes-mercury-accuracy https://github.com/kodi-game/game.libretro.bsnes-mercury-accuracy script-test

@@ -1,1 +1,1 @@
-game.libretro.bsnes-mercury-balanced https://github.com/kodi-game/game.libretro.bsnes-mercury-balanced master
+game.libretro.bsnes-mercury-balanced https://github.com/kodi-game/game.libretro.bsnes-mercury-balanced script-test
