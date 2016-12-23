@@ -1,1 +1,1 @@
-game.libretro.quicknes https://github.com/kodi-game/game.libretro.quicknes master
+game.libretro.quicknes https://github.com/kodi-game/game.libretro.quicknes script-test

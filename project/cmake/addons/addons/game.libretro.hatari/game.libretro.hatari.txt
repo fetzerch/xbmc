@@ -1,1 +1,1 @@
-game.libretro.hatari https://github.com/kodi-game/game.libretro.hatari master
+game.libretro.hatari https://github.com/kodi-game/game.libretro.hatari script-test

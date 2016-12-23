@@ -1,1 +1,1 @@
-game.libretro.bsnes-mercury-performance https://github.com/kodi-game/game.libretro.bsnes-mercury-performance master
+game.libretro.bsnes-mercury-performance https://github.com/kodi-game/game.libretro.bsnes-mercury-performance script-test

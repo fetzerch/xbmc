@@ -1,1 +1,1 @@
-game.libretro.beetle-psx https://github.com/kodi-game/game.libretro.beetle-psx master
+game.libretro.beetle-psx https://github.com/kodi-game/game.libretro.beetle-psx script-test

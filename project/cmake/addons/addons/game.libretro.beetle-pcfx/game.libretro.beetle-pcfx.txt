@@ -1,1 +1,1 @@
-game.libretro.beetle-pcfx https://github.com/kodi-game/game.libretro.beetle-pcfx master
+game.libretro.beetle-pcfx https://github.com/kodi-game/game.libretro.beetle-pcfx script-test

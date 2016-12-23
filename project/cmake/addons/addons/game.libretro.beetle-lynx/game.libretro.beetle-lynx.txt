@@ -1,1 +1,1 @@
-game.libretro.beetle-lynx https://github.com/kodi-game/game.libretro.beetle-lynx master
+game.libretro.beetle-lynx https://github.com/kodi-game/game.libretro.beetle-lynx script-test
