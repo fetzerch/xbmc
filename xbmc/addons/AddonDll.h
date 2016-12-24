@@ -147,7 +147,7 @@ bool CAddonDll<TheDll, TheStruct, TheProps>::LoadDll()
       libPath = tempbin + libPath;
       if (!XFILE::CFile::Exists(libPath))
       {
-        CLog::Log(LOGERROR, "ADDON: Could not locate %s", m_props.libname.c_str());
+        CLog::Log(LOGERROR, "ADDON: Could not locate %s", LibName().c_str());
         return false;
       }
     }
@@ -164,21 +164,12 @@ bool CAddonDll<TheDll, TheStruct, TheProps>::LoadDll()
   }
 
   /* Check if lib being loaded exists, else check in XBMC binary location */
-#if defined(TARGET_ANDROID)
-  // Android libs MUST live in this path, else multi-arch will break.
-  // The usual soname requirements apply. no subdirs, and filename is ^lib.*\.so$
-  if (!XFILE::CFile::Exists(strFileName))
-  {
-    std::string tempbin = getenv("XBMC_ANDROID_LIBS");
-    strFileName = tempbin + "/" + m_props.libname;
-  }
-#endif
   if (!XFILE::CFile::Exists(strFileName))
   {
     std::string altbin = CSpecialProtocol::TranslatePath("special://xbmcaltbinaddons/");
     if (!altbin.empty())
     {
-      strAltFileName = altbin + m_props.libname;
+      strAltFileName = altbin + LibName();
       if (!XFILE::CFile::Exists(strAltFileName))
       {
         std::string temp = CSpecialProtocol::TranslatePath("special://xbmc/addons/");
@@ -199,7 +190,7 @@ bool CAddonDll<TheDll, TheStruct, TheProps>::LoadDll()
       strFileName = tempbin + strFileName;
       if (!XFILE::CFile::Exists(strFileName))
       {
-        CLog::Log(LOGERROR, "ADDON: Could not locate %s", m_props.libname.c_str());
+        CLog::Log(LOGERROR, "ADDON: Could not locate %s", LibName().c_str());
         return false;
       }
     }
