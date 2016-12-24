@@ -107,6 +107,7 @@ namespace ADDON
     virtual std::string Description() const =0;
     virtual std::string Path() const =0;
     virtual std::string Profile() const =0;
+    virtual std::string LibName() const =0;
     virtual std::string LibPath() const =0;
     virtual std::string ChangeLog() const =0;
     virtual std::string FanArt() const =0;

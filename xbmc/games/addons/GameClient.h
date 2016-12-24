@@ -63,7 +63,7 @@ public:
   virtual ~CGameClient(void);
 
   // Implementation of IAddon via CAddonDll
-  virtual std::string     LibPath() const override;
+  virtual std::string     LibName() const override;
   virtual ADDON::AddonPtr GetRunningInstance() const override;
 
   // Query properties of the game client
