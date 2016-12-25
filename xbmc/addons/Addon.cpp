@@ -24,7 +24,6 @@
 #include <ostream>
 #include <utility>
 #include <vector>
-#include <stdlib.h>
 
 #include "AddonManager.h"
 #include "addons/Service.h"
@@ -330,23 +329,9 @@ TiXmlElement* CAddon::GetSettingsXML()
 
 std::string CAddon::LibPath() const
 {
-  if (LibName().empty())
+  if (m_props.libname.empty())
     return "";
-
-  std::string libPath = URIUtils::AddFileToFolder(m_props.path, LibName());
-
-#if defined(TARGET_ANDROID)
-  // Android libs MUST live in this path, else multi-arch will break.
-  // The usual soname requirements apply. no subdirs, and filename is ^lib.*\.so$
-  if (!XFILE::CFile::Exists(libPath))
-  {
-    std::string tempbin = getenv("XBMC_ANDROID_LIBS");
-    if (!tempbin.empty())
-      libPath = URIUtils::AddFileToFolder(tempbin, LibName());
-  }
-#endif
-
-  return libPath;
+  return URIUtils::AddFileToFolder(m_props.path, m_props.libname);
 }
 
 AddonVersion CAddon::GetDependencyVersion(const std::string &dependencyID) const

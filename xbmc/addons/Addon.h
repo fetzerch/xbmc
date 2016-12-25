@@ -105,7 +105,6 @@ public:
   std::string Description() const override { return m_props.description; }
   std::string Path() const override { return m_props.path; }
   std::string Profile() const override { return m_profilePath; }
-  std::string LibName() const override { return m_props.libname; }
   std::string LibPath() const override;
   std::string Author() const override { return m_props.author; }
   std::string ChangeLog() const override { return m_props.changelog; }
