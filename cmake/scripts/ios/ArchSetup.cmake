@@ -46,6 +46,8 @@ set(CMAKE_XCODE_ATTRIBUTE_COPY_PHASE_STRIP OFF)
 # Xcode strips dead code by default which breaks wrapping
 set(CMAKE_XCODE_ATTRIBUTE_DEAD_CODE_STRIPPING OFF)
 
+set(CMAKE_XCODE_ATTRIBUTE_GCC_OPTIMIZATION_LEVEL[variant=Debug] "0")
+
 # Unify output directories for iOS packaging scripts
 if(NOT CMAKE_GENERATOR MATCHES Xcode)
   set(CORE_BUILD_CONFIG "${CORE_BUILD_CONFIG}-iphoneos")
