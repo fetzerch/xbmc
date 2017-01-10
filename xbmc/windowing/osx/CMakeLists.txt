@@ -1,8 +1,10 @@
 if(CORE_SYSTEM_NAME STREQUAL osx)
   set(SOURCES WinEventsOSX.mm
+              WinEventsSDL.cpp
               WinSystemOSX.mm
               WinSystemOSXGL.mm)
   set(HEADERS WinEventsOSX.h
+              WinEventsSDL.h
               WinSystemOSX.h
               WinSystemOSXGL.h)
 endif()

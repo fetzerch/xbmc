@@ -1,6 +1,7 @@
 set(SOURCES GLContextEGL.cpp
             GLContextGLX.cpp
             GLContext.cpp
+            WinEventsX11.cpp
             WinSystemX11.cpp
             WinSystemX11GLContext.cpp
             WinSystemX11GLESContext.cpp
@@ -9,6 +10,7 @@ set(SOURCES GLContextEGL.cpp
 set(HEADERS GLContext.h
             GLContextEGL.h
             GLContextGLX.h
+            WinEventsX11.h
             WinSystemX11.h
             WinSystemX11GLContext.h
             WinSystemX11GLESContext.h
